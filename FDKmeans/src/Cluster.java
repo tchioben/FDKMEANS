@@ -1,10 +1,12 @@
+import java.util.ArrayList;
+
 
 public class Cluster {
 
 	
 	private ArrayList<Point> lesPoints;
 	
-	private centre Point;
+	private Point centre;
 	
 	 
 }

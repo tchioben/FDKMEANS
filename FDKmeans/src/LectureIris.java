@@ -6,26 +6,27 @@ import java.util.ArrayList;
 
 public class LectureIris {
 	@SuppressWarnings("resource")
-	public static ArrayList<Point> LectureFichier(String fichier){
+	public static ArrayList<Iris> LectureFichier(String fichier){
         String ligne;
         String[] ligneCoupee ;
-        ArrayList<Point> lesPoints = new ArrayList<Point>();
+        ArrayList<Iris> lesIris = new ArrayList<Iris>();
         BufferedReader ficTexte;
         try {
             ficTexte = new BufferedReader(new FileReader(new File(fichier)));
         do {
              ligne = ficTexte.readLine();
-              if (ligne != null) {
-                 System.out.println(ligne);
-                 if (ligne.charAt(0) != '@'){
+              if (ligne != null && ligne.length() > 0) {
+                // System.out.println(ligne);
+                 if (ligne.charAt(0) != '@' && ligne.charAt(0) != '%'){
                      ligneCoupee = ligne.split(",");
-                     lesPoints.add(new Point(Float.parseFloat(ligneCoupee[0]),Float.parseFloat(ligneCoupee[1])));
+                     lesIris.add(new Iris(Float.parseFloat(ligneCoupee[0]),Float.parseFloat(ligneCoupee[1]),Float.parseFloat(ligneCoupee[2]),Float.parseFloat(ligneCoupee[3])));
                     }
                 }
             } while (ligne != null);
-        return lesPoints;
+        return lesIris;
         }
         catch(Exception e){
+        	e.printStackTrace();
         	System.out.println("problem");
         	return null;
         }

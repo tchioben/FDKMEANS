@@ -1,13 +1,13 @@
 
 public class Iris {
 	
-	private double sepalLength;
+	private float sepalLength;
 	
-	private double sepalWidth;
+	private float sepalWidth;
 	
-	private double petalLength;
+	private float petalLength;
 	
-	private double petalWidth;
+	private float petalWidth;
 
 	/**
 	 * @param sepalLength2
@@ -15,8 +15,8 @@ public class Iris {
 	 * @param petalLength2
 	 * @param petalWidth2
 	 */
-	public Iris(double sepalLength2, double sepalWidth2, double petalLength2,
-			double petalWidth2) {
+	public Iris(float sepalLength2, float sepalWidth2, float petalLength2,
+			float petalWidth2) {
 		this.sepalLength = sepalLength2;
 		this.sepalWidth = sepalWidth2;
 		this.petalLength = petalLength2;
@@ -26,56 +26,56 @@ public class Iris {
 	/**
 	 * @return the sepalLength
 	 */
-	public double getSepalLength() {
+	public float getSepalLength() {
 		return sepalLength;
 	}
 
 	/**
 	 * @param sepalLength the sepalLength to set
 	 */
-	public void setSepalLength(double sepalLength) {
+	public void setSepalLength(float sepalLength) {
 		this.sepalLength = sepalLength;
 	}
 
 	/**
 	 * @return the sepalWidth
 	 */
-	public double getSepalWidth() {
+	public float getSepalWidth() {
 		return sepalWidth;
 	}
 
 	/**
 	 * @param sepalWidth the sepalWidth to set
 	 */
-	public void setSepalWidth(double sepalWidth) {
+	public void setSepalWidth(float sepalWidth) {
 		this.sepalWidth = sepalWidth;
 	}
 
 	/**
 	 * @return the petalLength
 	 */
-	public double getPetalLength() {
+	public float getPetalLength() {
 		return petalLength;
 	}
 
 	/**
 	 * @param petalLength the petalLength to set
 	 */
-	public void setPetalLength(double petalLength) {
+	public void setPetalLength(float petalLength) {
 		this.petalLength = petalLength;
 	}
 
 	/**
 	 * @return the petalWidth
 	 */
-	public double getPetalWidth() {
+	public float getPetalWidth() {
 		return petalWidth;
 	}
 
 	/**
 	 * @param petalWidth the petalWidth to set
 	 */
-	public void setPetalWidth(double petalWidth) {
+	public void setPetalWidth(float petalWidth) {
 		this.petalWidth = petalWidth;
 	}
 
@@ -83,28 +83,17 @@ public class Iris {
 		return "iris = "+this.sepalLength+" , "+sepalWidth+" , "+petalLength+" , "+petalWidth;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		long temp;
-		temp = Double.doubleToLongBits(petalLength);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(petalWidth);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(sepalLength);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(sepalWidth);
-		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + Float.floatToIntBits(petalLength);
+		result = prime * result + Float.floatToIntBits(petalWidth);
+		result = prime * result + Float.floatToIntBits(sepalLength);
+		result = prime * result + Float.floatToIntBits(sepalWidth);
 		return result;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -114,20 +103,17 @@ public class Iris {
 		if (getClass() != obj.getClass())
 			return false;
 		Iris other = (Iris) obj;
-		if (Double.doubleToLongBits(petalLength) != Double
-				.doubleToLongBits(other.petalLength))
+		if (Float.floatToIntBits(petalLength) != Float.floatToIntBits(other.petalLength))
 			return false;
-		if (Double.doubleToLongBits(petalWidth) != Double
-				.doubleToLongBits(other.petalWidth))
+		if (Float.floatToIntBits(petalWidth) != Float.floatToIntBits(other.petalWidth))
 			return false;
-		if (Double.doubleToLongBits(sepalLength) != Double
-				.doubleToLongBits(other.sepalLength))
+		if (Float.floatToIntBits(sepalLength) != Float.floatToIntBits(other.sepalLength))
 			return false;
-		if (Double.doubleToLongBits(sepalWidth) != Double
-				.doubleToLongBits(other.sepalWidth))
+		if (Float.floatToIntBits(sepalWidth) != Float.floatToIntBits(other.sepalWidth))
 			return false;
 		return true;
 	}
+
 	
 
 	

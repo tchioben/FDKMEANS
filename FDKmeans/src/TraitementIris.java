@@ -3,21 +3,21 @@ import java.util.ArrayList;
 
 public class TraitementIris {
 
-	private double minSepalLength;
+	private float minSepalLength;
 
-	private double maxSepalLength;
+	private float maxSepalLength;
 	
-	private double minSepalWidth;
+	private float minSepalWidth;
 	
-	private double maxSepalWidth;
+	private float maxSepalWidth;
 	
-	private double minPetalLength;
+	private float minPetalLength;
 	
-	private double maxPetalLength;
+	private float maxPetalLength;
 	
-	private double minPetalWidth;
+	private float minPetalWidth;
 	
-	private double maxPetalWidth;
+	private float maxPetalWidth;
 	
 	private ClusterIris[] lesClusters;
 	
@@ -88,6 +88,7 @@ public class TraitementIris {
 			lesCentres[i]=lesClusters[i].getCentre();
 		}
 		
+		// tant qu'on a pas les anciens centres qui sont égaux aux nouveaux
 		while (!egal(lesCentres,lesAnciensCentres)){
 			for (int m=0; m<lesClusters.length;m++){
 				lesClusters[m].setLesIris(new ArrayList<Iris>());
@@ -96,26 +97,28 @@ public class TraitementIris {
 				System.out.println(lesCentres[l]);
 				lesAnciensCentres[l]=lesCentres[l];
 			}
-			
-		remplirCluster();
+		
+			//dispatch les differents points dans les clusters
+			remplirCluster();
 
-		calculerCentre();
+			//calculer les nouveaux centres	
+			calculerCentre();
 		
-		//vide les clusters
-		for (int m=0; m<lesClusters.length;m++){
-			lesCentres[m] = lesClusters[m].getCentre();
+			//vide les clusters
+			for (int m=0; m<lesClusters.length;m++){
+				lesCentres[m] = lesClusters[m].getCentre();
+			}
+		
+			int p = 0;
+			for(Iris iris : lesClusters[1].getLesIris()){
+				System.out.println("numero = "+p+" : "+iris);
+				p++;
+			}
+			System.out.println(lesClusters[0].getLesIris().size());
+			System.out.println(lesClusters[1].getLesIris().size());
+			System.out.println(lesClusters[2].getLesIris().size());
+			
 		}
-		
-		int p = 0;
-		for(Iris iris : lesClusters[1].getLesIris()){
-			System.out.println("numero = "+p+" : "+iris);
-			p++;
-		}
-		System.out.println(lesClusters[0].getLesIris().size());
-		System.out.println(lesClusters[1].getLesIris().size());
-		System.out.println(lesClusters[2].getLesIris().size());
-		
-	}
 	}
 
 	
@@ -131,7 +134,7 @@ public class TraitementIris {
 		
 		//pour chaque iris
 		for(Iris iris: lesIris){
-			double[] lesDistances = new double[lesClusters.length];
+			float[] lesDistances = new float[lesClusters.length];
 			
 			//calcul de la distance pour chaque centre
 			for(int i2 = 0 ; i2< lesCentres.length; i2++){ 
@@ -140,7 +143,7 @@ public class TraitementIris {
 			
 			//on recupere la distance la plus proche afin de savoir dans quel cluster mettre le l'iris
 			int laPlusProche = 0;
-			double laValeurAssocie = lesDistances[0];
+			float laValeurAssocie = lesDistances[0];
 			for(int k=1;k<lesDistances.length;k++)
 				if(lesDistances[k] < laValeurAssocie){
 					laPlusProche= k;
@@ -153,14 +156,14 @@ public class TraitementIris {
 		}
 	
 
-	private double calculDistance(Iris iris,Iris iris2) {
-		double sepalLength = Math.pow((iris.getSepalLength()-iris2.getSepalLength())/((maxSepalLength-minSepalLength)),2);
-		double sepalWidth = Math.pow((iris.getSepalWidth()-iris2.getSepalWidth())/((maxSepalWidth-minSepalWidth)),2);
-		double petalLength = Math.pow((iris.getPetalLength()-iris2.getPetalLength())/((maxPetalLength-minPetalLength)),2);
-		double petalWidth = Math.pow((iris.getPetalLength()-iris2.getPetalLength())/((maxPetalLength-minPetalLength)),2);
+	private float calculDistance(Iris iris,Iris iris2) {
+		float sepalLength = (float) Math.pow((iris.getSepalLength()-iris2.getSepalLength())/((maxSepalLength-minSepalLength)),2);
+		float sepalWidth = (float) Math.pow((iris.getSepalWidth()-iris2.getSepalWidth())/((maxSepalWidth-minSepalWidth)),2);
+		float petalLength = (float) Math.pow((iris.getPetalLength()-iris2.getPetalLength())/((maxPetalLength-minPetalLength)),2);
+		float petalWidth = (float) Math.pow((iris.getPetalLength()-iris2.getPetalLength())/((maxPetalLength-minPetalLength)),2);
 		
 		
-		double distance = Math.sqrt(sepalLength+sepalWidth+petalLength+petalWidth);
+		float distance = (float) Math.sqrt(sepalLength+sepalWidth+petalLength+petalWidth);
 		return distance;
 	}
 	

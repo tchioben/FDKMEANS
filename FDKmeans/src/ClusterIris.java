@@ -1,23 +1,23 @@
 import java.util.ArrayList;
 
-public class ClusterIris {
+public class ClusterIris implements Cluster{
 
 	private Iris centre;
 	
 	private ArrayList<Iris> lesIris; 
 
-	public ClusterIris(double minSepalLength, double maxSepalLength, double minSepalWidth,	double maxSepalWidth,
-			double minPetalLength, double maxPetalLength, double minPetalWidth, double maxPetalWidth){
+	public ClusterIris(float minSepalLength, float maxSepalLength, float minSepalWidth,	float maxSepalWidth,
+			float minPetalLength, float maxPetalLength, float minPetalWidth, float maxPetalWidth){
 		lesIris = new ArrayList<Iris>();
-		double sepalLength = this.aleatoire(minSepalLength,maxSepalLength);
-		double sepalWidth = this.aleatoire(minSepalWidth,maxSepalWidth);
-		double petalLength = this.aleatoire(minPetalLength,maxPetalLength);
-		double petalWidth = this.aleatoire(minPetalWidth,maxPetalWidth);
+		float sepalLength = this.aleatoire(minSepalLength,maxSepalLength);
+		float sepalWidth = this.aleatoire(minSepalWidth,maxSepalWidth);
+		float petalLength = this.aleatoire(minPetalLength,maxPetalLength);
+		float petalWidth = this.aleatoire(minPetalWidth,maxPetalWidth);
 		this.centre = new Iris(sepalLength,sepalWidth,petalLength,petalWidth); 
 	}
 	
-	private double aleatoire(double min, double max) {
-		double n =  (min + Math.random() * (max - min));
+	private float aleatoire(float min, float max) {
+		float n =  (float) (min + Math.random() * (max - min));
 		return n;
 	}
 
@@ -54,10 +54,10 @@ public class ClusterIris {
 	}
 
 	public void calculCentre() {
-		double sepalLengthNew=0;
-		double sepalWidthNew=0;
-		double petalLengthNew=0;
-		double petalWidthNew=0;
+		float sepalLengthNew=0;
+		float sepalWidthNew=0;
+		float petalLengthNew=0;
+		float petalWidthNew=0;
 		int nbElements=0;
 		for(Iris iris : lesIris){
 			sepalLengthNew += iris.getSepalLength();

@@ -1,12 +1,11 @@
-import java.util.ArrayList;
+/**
+ * 
+ */
 
-
-public class Cluster {
-
+/**
+ * @author Lea Vanelle & Benoit Bailleul
+ *
+ */
+public interface Cluster {
 	
-	private ArrayList<Point> lesPoints;
-	
-	private Point centre;
-	
-	 
 }
